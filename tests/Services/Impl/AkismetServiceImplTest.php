@@ -4,8 +4,8 @@
 namespace OpenClassrooms\Akismet\Services\Impl;
 
 use OpenClassrooms\Akismet\Client\ClientMock;
-use OpenClassrooms\Akismet\Models\CommentBuilderImpl;
 use OpenClassrooms\Akismet\Models\CommentStub;
+use OpenClassrooms\Akismet\Models\Impl\CommentBuilderImpl;
 use OpenClassrooms\Akismet\Services\AkismetService;
 
 /**
@@ -42,11 +42,13 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($response);
+        $this->assertEquals(AkismetService::RESOURCE, ClientMock::$resource);
     }
 
     protected function setUp()
     {
         $this->akismetService = new AkismetServiceImpl();
         $this->akismetService->setClient(new ClientMock());
+        ClientMock::$postReturn = true;
     }
 }

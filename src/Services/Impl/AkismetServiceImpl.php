@@ -3,7 +3,7 @@
 namespace OpenClassrooms\Akismet\Services\Impl;
 
 use OpenClassrooms\Akismet\Client\Client;
-use OpenClassrooms\Akismet\Models\Comment;
+use OpenClassrooms\Akismet\Models\Impl\Comment;
 use OpenClassrooms\Akismet\Services\AkismetService;
 
 /**
@@ -11,8 +11,6 @@ use OpenClassrooms\Akismet\Services\AkismetService;
  */
 class AkismetServiceImpl implements AkismetService
 {
-    const RESOURCE = 'comment-check';
-
     /**
      * @var Client
      */

@@ -9,10 +9,34 @@ class ClientMock implements Client
 {
 
     /**
+     * @var bool
+     */
+    public static $postReturn;
+
+    /**
+     * @var string
+     */
+    public static $resource;
+
+    /**
+     * @var array
+     */
+    public static $params;
+
+    public function __construct()
+    {
+        self::$resource = null;
+        self::$params = null;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function post($resource, array $params)
     {
-        return true;
+        self::$resource = $resource;
+        self::$params = $params;
+
+        return self::$postReturn;
     }
 }

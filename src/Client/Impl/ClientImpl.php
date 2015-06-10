@@ -40,6 +40,7 @@ class ClientImpl implements Client
      */
     public function post($resource, array $params)
     {
+
         $params['blog'] = $this->blogUrl;
 
         $response = $this->guzzle->post($resource, $params);

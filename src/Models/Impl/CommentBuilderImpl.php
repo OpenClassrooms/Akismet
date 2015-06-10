@@ -1,11 +1,13 @@
 <?php
 
-namespace OpenClassrooms\Akismet\Models;
+namespace OpenClassrooms\Akismet\Models\Impl;
+
+use OpenClassrooms\Akismet\Models\CommentBuilder;
 
 /**
  * @author Arnaud Lefèvre <arnaud.lefevre@openclassrooms.com>
  */
-class CommentBuilderImpl
+class CommentBuilderImpl implements CommentBuilder
 {
 
     /**
@@ -14,7 +16,7 @@ class CommentBuilderImpl
     private $comment;
 
     /**
-     * @return CommentBuilderImpl
+     * {@inheritdoc}
      */
     public function create()
     {
@@ -24,9 +26,7 @@ class CommentBuilderImpl
     }
 
     /**
-     * @param string $userIp
-     *
-     * @return CommentBuilderImpl
+     * {@inheritdoc}
      */
     public function withUserIp($userIp)
     {
@@ -36,9 +36,7 @@ class CommentBuilderImpl
     }
 
     /**
-     * @param string $userAgent
-     *
-     * @return CommentBuilderImpl
+     * {@inheritdoc}
      */
     public function withUserAgent($userAgent)
     {
@@ -48,9 +46,7 @@ class CommentBuilderImpl
     }
 
     /**
-     * @param string $authorName
-     *
-     * @return CommentBuilderImpl
+     * {@inheritdoc}
      */
     public function withAuthorName($authorName)
     {
@@ -60,9 +56,7 @@ class CommentBuilderImpl
     }
 
     /**
-     * @param string $authorEmail
-     *
-     * @return CommentBuilderImpl
+     * {@inheritdoc}
      */
     public function withAuthorEmail($authorEmail)
     {
@@ -72,9 +66,7 @@ class CommentBuilderImpl
     }
 
     /**
-     * @param string $content
-     *
-     * @return CommentBuilderImpl
+     * {@inheritdoc}
      */
     public function withContent($content)
     {
@@ -84,7 +76,7 @@ class CommentBuilderImpl
     }
 
     /**
-     * @return Comment
+     * {@inheritdoc}
      */
     public function build()
     {
