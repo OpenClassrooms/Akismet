@@ -8,10 +8,10 @@ namespace OpenClassrooms\Akismet\Client;
 interface Client
 {
     /**
-     * @param string $path
+     * @param string $resource
      * @param array  $params
      *
      * @return string
      */
-    public function send($path, array $params);
+    public function post($resource, array $params);
 } 
