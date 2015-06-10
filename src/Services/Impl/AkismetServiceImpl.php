@@ -11,6 +11,7 @@ use OpenClassrooms\Akismet\Services\AkismetService;
  */
 class AkismetServiceImpl implements AkismetService
 {
+
     /**
      * @var Client
      */
@@ -32,6 +33,8 @@ class AkismetServiceImpl implements AkismetService
         $params = array(
             'user_ip'              => $comment->userIp,
             'user_agent'           => $comment->userAgent,
+            'referrer'             => $comment->referrer,
+            'permalink'            => $comment->permalink,
             'comment_author'       => $comment->authorName,
             'comment_author_email' => $comment->authorEmail,
             'comment_content'      => $comment->content

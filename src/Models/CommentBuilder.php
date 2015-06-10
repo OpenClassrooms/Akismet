@@ -29,6 +29,20 @@ interface CommentBuilder
     public function withUserAgent($userAgent);
 
     /**
+     * @param string $referrer
+     *
+     * @return CommentBuilder
+     */
+    public function withReferrer($referrer);
+
+    /**
+     * @param string $permalink
+     *
+     * @return CommentBuilder
+     */
+    public function withPermalink($permalink);
+
+    /**
      * @param string $authorName
      *
      * @return CommentBuilder

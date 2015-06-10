@@ -48,6 +48,26 @@ class CommentBuilderImpl implements CommentBuilder
     /**
      * {@inheritdoc}
      */
+    public function withReferrer($referrer)
+    {
+        $this->comment->referrer = $referrer;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withPermalink($permalink)
+    {
+        $this->comment->permalink = $permalink;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function withAuthorName($authorName)
     {
         $this->comment->authorName = $authorName;
