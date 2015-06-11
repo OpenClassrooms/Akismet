@@ -2,6 +2,7 @@
 
 namespace OpenClassrooms\Akismet\Models\Impl;
 
+use OpenClassrooms\Akismet\Models\Comment;
 use OpenClassrooms\Akismet\Models\CommentBuilder;
 
 /**
@@ -20,7 +21,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function create()
     {
-        $this->comment = new Comment();
+        $this->comment = new CommentImpl();
 
         return $this;
     }
@@ -30,7 +31,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function withUserIp($userIp)
     {
-        $this->comment->userIp = $userIp;
+        $this->comment->setUserIp($userIp);
 
         return $this;
     }
@@ -40,7 +41,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function withUserAgent($userAgent)
     {
-        $this->comment->userAgent = $userAgent;
+        $this->comment->setUserAgent($userAgent);
 
         return $this;
     }
@@ -50,7 +51,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function withReferrer($referrer)
     {
-        $this->comment->referrer = $referrer;
+        $this->comment->setReferrer($referrer);
 
         return $this;
     }
@@ -60,7 +61,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function withPermalink($permalink)
     {
-        $this->comment->permalink = $permalink;
+        $this->comment->setPermalink($permalink);
 
         return $this;
     }
@@ -70,7 +71,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function withAuthorName($authorName)
     {
-        $this->comment->authorName = $authorName;
+        $this->comment->setAuthorName($authorName);
 
         return $this;
     }
@@ -80,7 +81,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function withAuthorEmail($authorEmail)
     {
-        $this->comment->authorEmail = $authorEmail;
+        $this->comment->setAuthorEmail($authorEmail);
 
         return $this;
     }
@@ -90,7 +91,7 @@ class CommentBuilderImpl implements CommentBuilder
      */
     public function withContent($content)
     {
-        $this->comment->content = $content;
+        $this->comment->setContent($content);
 
         return $this;
     }

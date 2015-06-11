@@ -2,12 +2,12 @@
 
 namespace OpenClassrooms\Akismet\Tests\Models;
 
-use OpenClassrooms\Akismet\Models\Impl\Comment;
+use OpenClassrooms\Akismet\Models\Impl\CommentImpl;
 
 /**
  * @author Arnaud Lefèvre <arnaud.lefevre@openclassrooms.com>
  */
-class CommentStub extends Comment
+class CommentStub extends CommentImpl
 {
     const USER_IP = '127.0.0.1';
     const USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6';

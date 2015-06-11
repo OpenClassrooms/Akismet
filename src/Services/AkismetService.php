@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Akismet\Services;
 
-use OpenClassrooms\Akismet\Models\Impl\Comment;
+use OpenClassrooms\Akismet\Models\Comment;
 
 /**
  * @author Arnaud Lefèvre <arnaud.lefevre@openclassrooms.com>
