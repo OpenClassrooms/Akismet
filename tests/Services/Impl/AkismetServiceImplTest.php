@@ -1,12 +1,13 @@
 <?php
 
 
-namespace OpenClassrooms\Akismet\Services\Impl;
+namespace OpenClassrooms\Akismet\Tests\Services\Impl;
 
-use OpenClassrooms\Akismet\Client\ClientMock;
-use OpenClassrooms\Akismet\Models\CommentStub;
 use OpenClassrooms\Akismet\Models\Impl\CommentBuilderImpl;
 use OpenClassrooms\Akismet\Services\AkismetService;
+use OpenClassrooms\Akismet\Services\Impl\AkismetServiceImpl;
+use OpenClassrooms\Akismet\Tests\Client\ClientMock;
+use OpenClassrooms\Akismet\Tests\Models\CommentStub;
 
 /**
  * Class AkismetServiceImplTest

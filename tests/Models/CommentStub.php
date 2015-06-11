@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Akismet\Models;
+namespace OpenClassrooms\Akismet\Tests\Models;
 
 use OpenClassrooms\Akismet\Models\Impl\Comment;
 

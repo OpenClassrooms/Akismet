@@ -1,6 +1,8 @@
 <?php
 
-namespace OpenClassrooms\Akismet\Client;
+namespace OpenClassrooms\Akismet\Tests\Client;
+
+use OpenClassrooms\Akismet\Client\Client;
 
 /**
  * @author Arnaud Lefèvre <arnaud.lefevre@openclassrooms.com>

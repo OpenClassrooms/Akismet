@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Client\Impl;
+namespace OpenClassrooms\Akismet\Tests\Client;
 
 use OpenClassrooms\Akismet\Client\Client;
 use OpenClassrooms\Akismet\Client\Impl\ClientImpl;

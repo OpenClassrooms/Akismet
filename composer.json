@@ -20,7 +20,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "OpenClassrooms\\Akismet\\": "tests/"
+            "OpenClassrooms\\Akismet\\Tests\\": "tests/"
         }
     },
     "require": {
