@@ -15,11 +15,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "OpenClassrooms\\Akismet\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
+            "OpenClassrooms\\Akismet\\": "src/",
             "OpenClassrooms\\Akismet\\Tests\\": "tests/"
         }
     },
