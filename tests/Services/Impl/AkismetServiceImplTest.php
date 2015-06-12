@@ -53,7 +53,7 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
     {
         $this->akismetService = new AkismetServiceImpl();
         $this->akismetService->setClient(new ClientMock());
-        ClientMock::$postReturn = 'true'g;
+        ClientMock::$postReturn = 'true';
     }
 
     private function assertCommentCheckParams()
