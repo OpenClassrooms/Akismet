@@ -32,7 +32,7 @@ class ClientImplTest extends \PHPUnit_Framework_TestCase
         /** @var \GuzzleHttp\Client $guzzle */
         $guzzle = $guzzleProperty->getValue($this->client);
 
-        $this->assertEquals('https://' . self::KEY . '.rest.akismet.com/1.1/', $guzzle->getConfig('base_url'));
+        $this->assertEquals('https://' . self::KEY . '.rest.akismet.com/1.1/', $guzzle->getConfig('base_uri'));
     }
 
     protected function setUp()
