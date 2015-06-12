@@ -19,7 +19,7 @@ class ClientImpl implements Client
      *
      * @var string
      */
-    private $blogUrl;
+    private $blog;
 
     /**
      * @var ClientInterface
@@ -27,11 +27,12 @@ class ClientImpl implements Client
     private $guzzle;
 
     /**
-     * @param string $key The API key
+     * @param string $key  The API key
+     * @param string $blog The front page or home URL
      */
-    public function __construct($key, $blogUrl)
+    public function __construct($key, $blog)
     {
-        $this->blogUrl = $blogUrl;
+        $this->blog = $blog;
         $this->guzzle = new \GuzzleHttp\Client(array('base_url' => 'https://' . $key . '.rest.akismet.com/1.1/'));
     }
 
@@ -40,10 +41,10 @@ class ClientImpl implements Client
      */
     public function post($resource, array $params)
     {
-        $params['blog'] = $this->blogUrl;
+        $params['blog'] = $this->blog;
 
-        $response = $this->guzzle->post($resource, $params);
+        $response = $this->guzzle->post($resource, array('body' => $params));
 
-        return $response->getBody();
+        return $response->getBody()->getContents();
     }
 }
