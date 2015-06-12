@@ -40,6 +40,6 @@ class AkismetServiceImpl implements AkismetService
             'comment_content'      => $comment->getContent()
         );
 
-        return true === $this->client->post(self::RESOURCE, $params);
+        return 'true' === $this->client->post(self::RESOURCE, $params);
     }
 }
