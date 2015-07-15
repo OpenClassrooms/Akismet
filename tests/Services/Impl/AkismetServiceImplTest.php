@@ -52,30 +52,6 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     *
-     * @expectedException \Exception
-     * @expectedExceptionMessage The Spam has not been submit.
-     */
-    public function submitSpamError_ThrowException()
-    {
-        $commentBuilder = new CommentBuilderImpl();
-
-        $this->akismetService->submitSpam(
-            $commentBuilder
-                ->create()
-                ->withUserIp(CommentStub::USER_IP)
-                ->withUserAgent(CommentStub::USER_AGENT)
-                ->withReferrer(CommentStub::REFERRER)
-                ->withPermalink(CommentStub::PERMALINK)
-                ->withAuthorName(CommentStub::AUTHOR_NAME)
-                ->withAuthorEmail(CommentStub::AUTHOR_EMAIL)
-                ->withContent(CommentStub::CONTENT)
-                ->build()
-        );
-    }
-
-    /**
-     * @test
      */
     public function submitSpam()
     {
@@ -98,30 +74,6 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(Resource::SUBMIT_SPAM, ClientMock::$resource);
         $this->assertCommentCheckParams();
-    }
-
-    /**
-     * @test
-     *
-     * @expectedException \Exception
-     * @expectedExceptionMessage The Ham has not been submit.
-     */
-    public function submitHamError_ThrowException()
-    {
-        $commentBuilder = new CommentBuilderImpl();
-
-        $this->akismetService->submitHam(
-            $commentBuilder
-                ->create()
-                ->withUserIp(CommentStub::USER_IP)
-                ->withUserAgent(CommentStub::USER_AGENT)
-                ->withReferrer(CommentStub::REFERRER)
-                ->withPermalink(CommentStub::PERMALINK)
-                ->withAuthorName(CommentStub::AUTHOR_NAME)
-                ->withAuthorEmail(CommentStub::AUTHOR_EMAIL)
-                ->withContent(CommentStub::CONTENT)
-                ->build()
-        );
     }
 
     /**

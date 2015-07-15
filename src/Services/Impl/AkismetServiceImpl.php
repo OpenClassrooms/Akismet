@@ -2,9 +2,9 @@
 
 namespace OpenClassrooms\Akismet\Services\Impl;
 
-use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Client\Client;
 use OpenClassrooms\Akismet\Models\Comment;
+use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Services\AkismetService;
 
 /**
@@ -39,12 +39,7 @@ class AkismetServiceImpl implements AkismetService
      */
     public function submitSpam(Comment $comment)
     {
-        $response = $this->client->post(Resource::SUBMIT_SPAM, $comment->toArray());
-
-        if ('Thanks for making the web a better place.' !== $response )
-        {
-            throw new \Exception('The Spam has not been submit.');
-        }
+        $this->client->post(Resource::SUBMIT_SPAM, $comment->toArray());
     }
 
     /**
@@ -52,11 +47,6 @@ class AkismetServiceImpl implements AkismetService
      */
     public function submitHam(Comment $comment)
     {
-        $response = $this->client->post(Resource::SUBMIT_HAM, $comment->toArray());
-
-        if ('Thanks for making the web a better place.' !== $response )
-        {
-            throw new \Exception('The Ham has not been submit.');
-        }
+        $this->client->post(Resource::SUBMIT_HAM, $comment->toArray());
     }
 }
