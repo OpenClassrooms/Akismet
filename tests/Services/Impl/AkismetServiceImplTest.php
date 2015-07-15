@@ -3,6 +3,7 @@
 
 namespace OpenClassrooms\Akismet\Tests\Services\Impl;
 
+use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Models\Impl\CommentBuilderImpl;
 use OpenClassrooms\Akismet\Services\AkismetService;
 use OpenClassrooms\Akismet\Services\Impl\AkismetServiceImpl;
@@ -45,7 +46,107 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($response);
-        $this->assertEquals(AkismetService::RESOURCE, ClientMock::$resource);
+        $this->assertEquals(Resource::COMMENT_CHECK, ClientMock::$resource);
+        $this->assertCommentCheckParams();
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException \Exception
+     * @expectedExceptionMessage The Spam has not been submit.
+     */
+    public function submitSpamError_ThrowException()
+    {
+        $commentBuilder = new CommentBuilderImpl();
+
+        $this->akismetService->submitSpam(
+            $commentBuilder
+                ->create()
+                ->withUserIp(CommentStub::USER_IP)
+                ->withUserAgent(CommentStub::USER_AGENT)
+                ->withReferrer(CommentStub::REFERRER)
+                ->withPermalink(CommentStub::PERMALINK)
+                ->withAuthorName(CommentStub::AUTHOR_NAME)
+                ->withAuthorEmail(CommentStub::AUTHOR_EMAIL)
+                ->withContent(CommentStub::CONTENT)
+                ->build()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function submitSpam()
+    {
+        ClientMock::$postReturn = 'Thanks for making the web a better place.';
+
+        $commentBuilder = new CommentBuilderImpl();
+
+        $this->akismetService->submitSpam(
+            $commentBuilder
+                ->create()
+                ->withUserIp(CommentStub::USER_IP)
+                ->withUserAgent(CommentStub::USER_AGENT)
+                ->withReferrer(CommentStub::REFERRER)
+                ->withPermalink(CommentStub::PERMALINK)
+                ->withAuthorName(CommentStub::AUTHOR_NAME)
+                ->withAuthorEmail(CommentStub::AUTHOR_EMAIL)
+                ->withContent(CommentStub::CONTENT)
+                ->build()
+        );
+
+        $this->assertEquals(Resource::SUBMIT_SPAM, ClientMock::$resource);
+        $this->assertCommentCheckParams();
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException \Exception
+     * @expectedExceptionMessage The Ham has not been submit.
+     */
+    public function submitHamError_ThrowException()
+    {
+        $commentBuilder = new CommentBuilderImpl();
+
+        $this->akismetService->submitHam(
+            $commentBuilder
+                ->create()
+                ->withUserIp(CommentStub::USER_IP)
+                ->withUserAgent(CommentStub::USER_AGENT)
+                ->withReferrer(CommentStub::REFERRER)
+                ->withPermalink(CommentStub::PERMALINK)
+                ->withAuthorName(CommentStub::AUTHOR_NAME)
+                ->withAuthorEmail(CommentStub::AUTHOR_EMAIL)
+                ->withContent(CommentStub::CONTENT)
+                ->build()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function submitHam()
+    {
+        ClientMock::$postReturn = 'Thanks for making the web a better place.';
+
+        $commentBuilder = new CommentBuilderImpl();
+
+        $this->akismetService->submitHam(
+            $commentBuilder
+                ->create()
+                ->withUserIp(CommentStub::USER_IP)
+                ->withUserAgent(CommentStub::USER_AGENT)
+                ->withReferrer(CommentStub::REFERRER)
+                ->withPermalink(CommentStub::PERMALINK)
+                ->withAuthorName(CommentStub::AUTHOR_NAME)
+                ->withAuthorEmail(CommentStub::AUTHOR_EMAIL)
+                ->withContent(CommentStub::CONTENT)
+                ->build()
+        );
+
+        $this->assertEquals(Resource::SUBMIT_HAM, ClientMock::$resource);
         $this->assertCommentCheckParams();
     }
 

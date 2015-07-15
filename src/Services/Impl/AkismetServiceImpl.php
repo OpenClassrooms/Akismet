@@ -2,6 +2,7 @@
 
 namespace OpenClassrooms\Akismet\Services\Impl;
 
+use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Client\Client;
 use OpenClassrooms\Akismet\Models\Comment;
 use OpenClassrooms\Akismet\Services\AkismetService;
@@ -30,16 +31,32 @@ class AkismetServiceImpl implements AkismetService
      */
     public function commentCheck(Comment $comment)
     {
-        $params = array(
-            'user_ip'              => $comment->getUserIp(),
-            'user_agent'           => $comment->getUserAgent(),
-            'referrer'             => $comment->getReferrer(),
-            'permalink'            => $comment->getPermalink(),
-            'comment_author'       => $comment->getAuthorName(),
-            'comment_author_email' => $comment->getAuthorEmail(),
-            'comment_content'      => $comment->getContent()
-        );
+        return 'true' === $this->client->post(Resource::COMMENT_CHECK, $comment->toArray());
+    }
 
-        return 'true' === $this->client->post(self::RESOURCE, $params);
+    /**
+     * {@inheritdoc}
+     */
+    public function submitSpam(Comment $comment)
+    {
+        $response = $this->client->post(Resource::SUBMIT_SPAM, $comment->toArray());
+
+        if ('Thanks for making the web a better place.' !== $response )
+        {
+            throw new \Exception('The Spam has not been submit.');
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function submitHam(Comment $comment)
+    {
+        $response = $this->client->post(Resource::SUBMIT_HAM, $comment->toArray());
+
+        if ('Thanks for making the web a better place.' !== $response )
+        {
+            throw new \Exception('The Ham has not been submit.');
+        }
     }
 }

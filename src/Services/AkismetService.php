@@ -9,10 +9,20 @@ use OpenClassrooms\Akismet\Models\Comment;
  */
 interface AkismetService
 {
-    const RESOURCE = 'comment-check';
-
     /**
+     * @param Comment $comment
+     *
      * @return bool
      */
     public function commentCheck(Comment $comment);
+
+    /**
+     * @param Comment $comment
+     */
+    public function submitSpam(Comment $comment);
+
+    /**
+     * @param Comment $comment
+     */
+    public function submitHam(Comment $comment);
 }
