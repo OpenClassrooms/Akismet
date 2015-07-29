@@ -4,6 +4,7 @@ namespace OpenClassrooms\Akismet\Services\Impl;
 
 use OpenClassrooms\Akismet\Client\Client;
 use OpenClassrooms\Akismet\Models\Comment;
+use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Services\AkismetService;
 
 /**
@@ -30,16 +31,22 @@ class AkismetServiceImpl implements AkismetService
      */
     public function commentCheck(Comment $comment)
     {
-        $params = array(
-            'user_ip'              => $comment->getUserIp(),
-            'user_agent'           => $comment->getUserAgent(),
-            'referrer'             => $comment->getReferrer(),
-            'permalink'            => $comment->getPermalink(),
-            'comment_author'       => $comment->getAuthorName(),
-            'comment_author_email' => $comment->getAuthorEmail(),
-            'comment_content'      => $comment->getContent()
-        );
+        return 'true' === $this->client->post(Resource::COMMENT_CHECK, $comment->toArray());
+    }
 
-        return 'true' === $this->client->post(self::RESOURCE, $params);
+    /**
+     * {@inheritdoc}
+     */
+    public function submitSpam(Comment $comment)
+    {
+        $this->client->post(Resource::SUBMIT_SPAM, $comment->toArray());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function submitHam(Comment $comment)
+    {
+        $this->client->post(Resource::SUBMIT_HAM, $comment->toArray());
     }
 }

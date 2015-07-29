@@ -172,4 +172,19 @@ abstract class Comment
         $this->userIp = $userIp;
     }
 
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'user_ip'              => $this->getUserIp(),
+            'user_agent'           => $this->getUserAgent(),
+            'referrer'             => $this->getReferrer(),
+            'permalink'            => $this->getPermalink(),
+            'comment_author'       => $this->getAuthorName(),
+            'comment_author_email' => $this->getAuthorEmail(),
+            'comment_content'      => $this->getContent()
+        );
+    }
 }
