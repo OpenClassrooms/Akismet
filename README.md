@@ -26,21 +26,20 @@ use OpenClassrooms\Akismet\Services\AkismetService;
 
 //do things
 ```
-<a name="install-nocomposer"/>
 
 ## Basic Usage
-AkismetServiceImpl class need to set a Client to communicate with Akismet Spam Protection service. This library provides a client base on GuzzleHttp\Client. But you can implement your owns client. Then you can set the client by the method ```AkismetServiceImpl::setClient()```
+AkismetServiceImpl class need to set a Client to communicate with Akismet Spam Protection service. This library provides a client based on GuzzleHttp\Client. But you can implement your owns client. Then you can set the client by the method ```AkismetServiceImpl::setClient()```
 
 ### The Models
-#### Object
-This Library defines an object "Comment" which have to passed as argument into the differents method of AkismetService
+#### Comment
+This Library defines an interface "Comment" which have to passed as argument into the differents methods of AkismetService
 ```php
 use OpenClassrooms\Akismet\Models\Comment;
 
 $comment = new CommentImpl();
 ```
-#### Builder
-This library provides a Builder to create this object : 
+#### Comment Builder
+This library provides a Builder to create the Comment : 
 ```php
 use OpenClassrooms\Akismet\Models\CommentBuilder;
 
@@ -60,7 +59,7 @@ use OpenClassrooms\Akismet\Services\Impl\AkismetServiceImpl;
 
 $akismetService = new AkismetServiceImpl();
 
-// commentCheck method need 1 only one parameter which have to be the Object Comment to check
+// commentCheck method need only one parameter which have to be the Object Comment to check
 if ($akismetService->commentCheck($comment)) {
  // store the comment and mark it as spam (in case of a mis-diagnosis).
 } else {
