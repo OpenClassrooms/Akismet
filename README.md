@@ -77,4 +77,4 @@ $akismetService->submitHam($comment);
 ```
 
 ## Besides this Library
-If you plan to use Akismet Library in a Symfony2 project, check out the AkismetBundle. The bundle provides an easy configuration option for this library.
+If you plan to use Akismet Library in a Symfony2 project, check out the [AkismetBundle](https://github.com/OpenClassrooms/AkismetBundle). The bundle provides an easy configuration option for this library.
