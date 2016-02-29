@@ -29,7 +29,7 @@ use OpenClassrooms\Akismet\Services\AkismetService;
 <a name="install-nocomposer"/>
 
 ## Basic Usage
-AkismetServiceImpl class need to set a Client to communicate with Akismet Spam Protection service. This library provides a client base on GuzzleHttp\Client. But you can implement your owns client. Then you can Set id by the method ```php AkismetServiceImpl::setClient()```
+AkismetServiceImpl class need to set a Client to communicate with Akismet Spam Protection service. This library provides a client base on GuzzleHttp\Client. But you can implement your owns client. Then you can set the client by the method ```php AkismetServiceImpl::setClient()```
 
 ### The Models
 #### Object
