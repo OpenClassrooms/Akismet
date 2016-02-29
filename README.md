@@ -4,7 +4,7 @@ Akismet
 [![Build Status](https://travis-ci.org/OpenClassrooms/Akismet.svg)](https://travis-ci.org/OpenClassrooms/Akismet)
 [![Coverage Status](https://coveralls.io/repos/OpenClassrooms/Akismet/badge.svg?branch=master)](https://coveralls.io/r/OpenClassrooms/Akismet?branch=master)
 
-This is a PHP5 library that provides functionality of [Akismet Spam Protection service](https://akismet.com/) in your application.
+This is a PHP5 library that provides [Akismet Spam Protection service](https://akismet.com/) functionality in your application.
 
 ## Installation
 The easiest way to install Akismet Library is via [composer](http://getcomposer.org/).
@@ -28,18 +28,18 @@ use OpenClassrooms\Akismet\Services\AkismetService;
 ```
 
 ## Basic Usage
-AkismetServiceImpl class need to set a Client to communicate with Akismet Spam Protection service. This library provides a client based on GuzzleHttp\Client. But you can implement your owns client. Then you can set the client by the method ```AkismetServiceImpl::setClient()```
+The `AkismetServiceImpl` class needs to set a client to communicate with Akismet Spam Protection service. This library provides a client based on GuzzleHttp\Client, though you can implement your own client. Then, you can set the client using the ```AkismetServiceImpl::setClient()``` method.
 
 ### The Models
 #### Comment
-This Library defines an interface "Comment" which have to passed as argument into the differents methods of AkismetService
+This Library defines a "Comment" interface which must be passed as an argument into the different AkismetService methods.
 ```php
 use OpenClassrooms\Akismet\Models\Comment;
 
 $comment = new CommentImpl();
 ```
 #### Comment Builder
-This library provides a Builder to create the Comment : 
+This library provides a Builder to create the Comment: 
 ```php
 use OpenClassrooms\Akismet\Models\CommentBuilder;
 
@@ -55,18 +55,18 @@ $comment = $commentBuilder->create()
 ```
 #### Service
 ```php
-use OpenClassrooms\Akismet\Services\Impl\AkismetServiceImpl;
+Use OpenClassrooms\Akismet\Services\Impl\AkismetServiceImpl;
 
 $akismetService = new AkismetServiceImpl();
 
-// commentCheck method need only one parameter which have to be the Object Comment to check
+// commentCheck method needs only one parameter, which has to be the Comment object
 if ($akismetService->commentCheck($comment)) {
- // store the comment and mark it as spam (in case of a mis-diagnosis).
+ // store the comment and mark it as spam (in case of a misdiagnosis).
 } else {
  // store the comment normally
 }
 ```
-to submit mis-diagnosed spam and ham, which improves the system for everybody.
+to submit misdiagnosed spam and ham, which improves the system for everybody.
 ```php
 $akismetService->submitSpam($comment);
 ```
@@ -75,5 +75,5 @@ And
 $akismetService->submitHam($comment);
 ```
 
-## Besides this Library
+## Beyond this Library
 If you plan to use Akismet Library in a Symfony2 project, check out the [AkismetBundle](https://github.com/OpenClassrooms/AkismetBundle). The bundle provides an easy configuration option for this library.
