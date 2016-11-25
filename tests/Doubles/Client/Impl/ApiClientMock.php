@@ -1,14 +1,19 @@
 <?php
 
-namespace OpenClassrooms\Akismet\Tests\Client;
+namespace OpenClassrooms\Akismet\Doubles\Client\Impl;
 
-use OpenClassrooms\Akismet\Client\Client;
+use OpenClassrooms\Akismet\Client\ApiClient;
 
 /**
  * @author Arnaud Lefèvre <arnaud.lefevre@openclassrooms.com>
  */
-class ClientMock implements Client
+class ApiClientMock implements ApiClient
 {
+
+    /**
+     * @var array
+     */
+    public static $params;
 
     /**
      * @var bool
@@ -20,15 +25,11 @@ class ClientMock implements Client
      */
     public static $resource;
 
-    /**
-     * @var array
-     */
-    public static $params;
-
     public function __construct()
     {
-        self::$resource = null;
         self::$params = null;
+        self::$postReturn = null;
+        self::$resource = null;
     }
 
     /**

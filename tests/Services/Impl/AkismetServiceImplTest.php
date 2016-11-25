@@ -1,14 +1,13 @@
 <?php
 
-
 namespace OpenClassrooms\Akismet\Tests\Services\Impl;
 
-use OpenClassrooms\Akismet\Models\Resource;
+use OpenClassrooms\Akismet\Doubles\Client\Impl\ApiClientMock;
+use OpenClassrooms\Akismet\Doubles\Models\CommentStub;
 use OpenClassrooms\Akismet\Models\Impl\CommentBuilderImpl;
+use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Services\AkismetService;
 use OpenClassrooms\Akismet\Services\Impl\AkismetServiceImpl;
-use OpenClassrooms\Akismet\Tests\Client\ClientMock;
-use OpenClassrooms\Akismet\Tests\Models\CommentStub;
 
 /**
  * Class AkismetServiceImplTest
@@ -17,8 +16,9 @@ use OpenClassrooms\Akismet\Tests\Models\CommentStub;
  */
 class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
 {
-    const KEY = '123APIKey';
     const BLOG_URL = 'http://www.blogdomainname.com/';
+
+    const KEY = '123APIKey';
 
     /**
      * @var AkismetService
@@ -46,8 +46,19 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($response);
-        $this->assertEquals(Resource::COMMENT_CHECK, ClientMock::$resource);
+        $this->assertEquals(Resource::COMMENT_CHECK, ApiClientMock::$resource);
         $this->assertCommentCheckParams();
+    }
+
+    private function assertCommentCheckParams()
+    {
+        $this->assertEquals(CommentStub::USER_IP, ApiClientMock::$params['user_ip']);
+        $this->assertEquals(CommentStub::USER_AGENT, ApiClientMock::$params['user_agent']);
+        $this->assertEquals(CommentStub::REFERRER, ApiClientMock::$params['referrer']);
+        $this->assertEquals(CommentStub::PERMALINK, ApiClientMock::$params['permalink']);
+        $this->assertEquals(CommentStub::AUTHOR_NAME, ApiClientMock::$params['comment_author']);
+        $this->assertEquals(CommentStub::AUTHOR_EMAIL, ApiClientMock::$params['comment_author_email']);
+        $this->assertEquals(CommentStub::CONTENT, ApiClientMock::$params['comment_content']);
     }
 
     /**
@@ -55,7 +66,7 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
      */
     public function submitSpam()
     {
-        ClientMock::$postReturn = 'Thanks for making the web a better place.';
+        ApiClientMock::$postReturn = 'Thanks for making the web a better place.';
 
         $commentBuilder = new CommentBuilderImpl();
 
@@ -72,7 +83,7 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
                 ->build()
         );
 
-        $this->assertEquals(Resource::SUBMIT_SPAM, ClientMock::$resource);
+        $this->assertEquals(Resource::SUBMIT_SPAM, ApiClientMock::$resource);
         $this->assertCommentCheckParams();
     }
 
@@ -81,7 +92,7 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
      */
     public function submitHam()
     {
-        ClientMock::$postReturn = 'Thanks for making the web a better place.';
+        ApiClientMock::$postReturn = 'Thanks for making the web a better place.';
 
         $commentBuilder = new CommentBuilderImpl();
 
@@ -98,25 +109,14 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
                 ->build()
         );
 
-        $this->assertEquals(Resource::SUBMIT_HAM, ClientMock::$resource);
+        $this->assertEquals(Resource::SUBMIT_HAM, ApiClientMock::$resource);
         $this->assertCommentCheckParams();
     }
 
     protected function setUp()
     {
         $this->akismetService = new AkismetServiceImpl();
-        $this->akismetService->setClient(new ClientMock());
-        ClientMock::$postReturn = 'true';
-    }
-
-    private function assertCommentCheckParams()
-    {
-        $this->assertEquals(CommentStub::USER_IP, ClientMock::$params['user_ip']);
-        $this->assertEquals(CommentStub::USER_AGENT, ClientMock::$params['user_agent']);
-        $this->assertEquals(CommentStub::REFERRER, ClientMock::$params['referrer']);
-        $this->assertEquals(CommentStub::PERMALINK, ClientMock::$params['permalink']);
-        $this->assertEquals(CommentStub::AUTHOR_NAME, ClientMock::$params['comment_author']);
-        $this->assertEquals(CommentStub::AUTHOR_EMAIL, ClientMock::$params['comment_author_email']);
-        $this->assertEquals(CommentStub::CONTENT, ClientMock::$params['comment_content']);
+        $this->akismetService->setApiClient(new ApiClientMock());
+        ApiClientMock::$postReturn = 'true';
     }
 }

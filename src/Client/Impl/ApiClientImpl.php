@@ -3,12 +3,12 @@
 namespace OpenClassrooms\Akismet\Client\Impl;
 
 use GuzzleHttp\ClientInterface;
-use OpenClassrooms\Akismet\Client\Client;
+use OpenClassrooms\Akismet\Client\ApiClient;
 
 /**
  * @author Arnaud Lefèvre <arnaud.lefevre@openclassrooms.com>
  */
-class ClientImpl implements Client
+class ApiClientImpl implements ApiClient
 {
 
     /**
@@ -24,7 +24,7 @@ class ClientImpl implements Client
     /**
      * @var ClientInterface
      */
-    private $guzzle;
+    private $client;
 
     /**
      * @param string $key  The API key
@@ -33,7 +33,7 @@ class ClientImpl implements Client
     public function __construct($key, $blog)
     {
         $this->blog = $blog;
-        $this->guzzle = new \GuzzleHttp\Client(array('base_uri' => 'https://' . $key . '.rest.akismet.com/1.1/'));
+        $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://'.$key.'.rest.akismet.com/1.1/']);
     }
 
     /**
@@ -43,7 +43,7 @@ class ClientImpl implements Client
     {
         $params['blog'] = $this->blog;
 
-        $response = $this->guzzle->post($resource, array('form_params' => $params));
+        $response = $this->client->post($resource, ['form_params' => $params]);
 
         return $response->getBody()->getContents();
     }
