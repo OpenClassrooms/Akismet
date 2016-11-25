@@ -4,7 +4,6 @@ namespace OpenClassrooms\Akismet\Services\Impl;
 
 use OpenClassrooms\Akismet\Client\ApiClient;
 use OpenClassrooms\Akismet\Models\Comment;
-use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Services\AkismetService;
 
 /**
@@ -12,6 +11,11 @@ use OpenClassrooms\Akismet\Services\AkismetService;
  */
 class AkismetServiceImpl implements AkismetService
 {
+    const COMMENT_CHECK = 'comment-check';
+
+    const SUBMIT_HAM = 'submit-ham';
+
+    const SUBMIT_SPAM = 'submit-spam';
 
     /**
      * @var ApiClient
@@ -31,7 +35,7 @@ class AkismetServiceImpl implements AkismetService
      */
     public function commentCheck(Comment $comment)
     {
-        return 'true' === $this->apiClient->post(Resource::COMMENT_CHECK, $comment->toArray());
+        return 'true' === $this->apiClient->post(self::COMMENT_CHECK, $comment->toArray());
     }
 
     /**
@@ -39,7 +43,7 @@ class AkismetServiceImpl implements AkismetService
      */
     public function submitSpam(Comment $comment)
     {
-        $this->apiClient->post(Resource::SUBMIT_SPAM, $comment->toArray());
+        $this->apiClient->post(self::SUBMIT_SPAM, $comment->toArray());
     }
 
     /**
@@ -47,6 +51,6 @@ class AkismetServiceImpl implements AkismetService
      */
     public function submitHam(Comment $comment)
     {
-        $this->apiClient->post(Resource::SUBMIT_HAM, $comment->toArray());
+        $this->apiClient->post(self::SUBMIT_HAM, $comment->toArray());
     }
 }

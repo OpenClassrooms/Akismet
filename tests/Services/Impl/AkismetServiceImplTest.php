@@ -5,7 +5,6 @@ namespace OpenClassrooms\Akismet\Tests\Services\Impl;
 use OpenClassrooms\Akismet\Doubles\Client\Impl\ApiClientMock;
 use OpenClassrooms\Akismet\Doubles\Models\CommentStub;
 use OpenClassrooms\Akismet\Models\Impl\CommentBuilderImpl;
-use OpenClassrooms\Akismet\Models\Resource;
 use OpenClassrooms\Akismet\Services\AkismetService;
 use OpenClassrooms\Akismet\Services\Impl\AkismetServiceImpl;
 
@@ -46,7 +45,7 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($response);
-        $this->assertEquals(Resource::COMMENT_CHECK, ApiClientMock::$resource);
+        $this->assertEquals(AkismetServiceImpl::COMMENT_CHECK, ApiClientMock::$resource);
         $this->assertCommentCheckParams();
     }
 
@@ -83,7 +82,7 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
                 ->build()
         );
 
-        $this->assertEquals(Resource::SUBMIT_SPAM, ApiClientMock::$resource);
+        $this->assertEquals(AkismetServiceImpl::SUBMIT_SPAM, ApiClientMock::$resource);
         $this->assertCommentCheckParams();
     }
 
@@ -109,7 +108,7 @@ class AkismetServiceImplTest extends \PHPUnit_Framework_TestCase
                 ->build()
         );
 
-        $this->assertEquals(Resource::SUBMIT_HAM, ApiClientMock::$resource);
+        $this->assertEquals(AkismetServiceImpl::SUBMIT_HAM, ApiClientMock::$resource);
         $this->assertCommentCheckParams();
     }
 

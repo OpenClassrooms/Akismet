@@ -37,23 +37,6 @@ class ApiClientImplTest extends \PHPUnit_Framework_TestCase
      */
     private $guzzleClientMock;
 
-//    /**
-//     * @test
-//     */
-//    public function Construct()
-//    {
-//        $reflectionClass = new \ReflectionClass($this->apiClient);
-//        $guzzleProperty = $reflectionClass->getProperty('client');
-//        $guzzleProperty->setAccessible(true);
-//        /** @var \GuzzleHttp\Client $client */
-//        $client = $guzzleProperty->getValue($this->apiClient);
-//
-//        var_dump($client->getConfig('base_uri'));
-//        exit;
-//
-//        $this->assertEquals('https://'.self::KEY.'.rest.akismet.com/1.1/', $client->getConfig('base_uri'));
-//    }
-
     /**
      * @test
      */
