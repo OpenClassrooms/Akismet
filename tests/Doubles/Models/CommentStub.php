@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Akismet\Tests\Models;
+namespace OpenClassrooms\Akismet\Doubles\Models;
 
 use OpenClassrooms\Akismet\Models\Impl\CommentImpl;
 
@@ -9,13 +9,19 @@ use OpenClassrooms\Akismet\Models\Impl\CommentImpl;
  */
 class CommentStub extends CommentImpl
 {
-    const USER_IP = '127.0.0.1';
-    const USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6';
-    const REFERRER = 'http://www.google.com';
-    const PERMALINK = 'http://yourblogdomainname.com/blog/post=1';
-    const AUTHOR_NAME = 'admin';
     const AUTHOR_EMAIL = 'test@test.com';
+
+    const AUTHOR_NAME = 'admin';
+
     const CONTENT = 'It means a lot that you would take the time to review our software.  Thanks again.';
+
+    const PERMALINK = 'http://yourblogdomainname.com/blog/post=1';
+
+    const REFERRER = 'http://www.google.com';
+
+    const USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6';
+
+    const USER_IP = '127.0.0.1';
 
     public $userIp = self::USER_IP;
 

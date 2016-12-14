@@ -5,7 +5,7 @@ namespace OpenClassrooms\Akismet\Client;
 /**
  * @author Arnaud Lefèvre <arnaud.lefevre@openclassrooms.com>
  */
-interface Client
+interface ApiClient
 {
     /**
      * @param string $resource
