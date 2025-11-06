@@ -35,7 +35,7 @@ class ClientMock extends Client
     /**
      * {@inheritdoc}
      */
-    public function post($uri, array $options = [])
+    public function post($uri, array $options = []): ResponseInterface
     {
         self::$uri = $uri;
         self::$options = $options;
